@@ -1,0 +1,30 @@
+$background-color:  #dc5945;
+$title-color:       rgba(255, 255, 255, 0.7);
+$moreinfo-color:    rgba(255, 255, 255, 0.3);
+
+.widget-bart {
+  background-color: $background-color;
+
+  .station {
+    color: $title-color;
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  .bound {
+    color: $moreinfo-color;
+  }
+
+  .current {
+    font-size: 76px;
+    font-weight: 700;
+  }
+
+  .next {
+    color: $title-color;
+  }
+
+  .more-info {
+    color: $moreinfo-color;
+  }
+}
