@@ -62,7 +62,18 @@ SCHEDULER.every '2m', first_in: 0 do
   estimate = page['station'][0]['etd'][0]['estimate']
   arrival  = estimate[0]['minutes'][0]
 
-  first_train_in = ':' + (arrival.to_i < 10 ? '0' : '') + arrival
+
+  def is_arriving(arrival)
+  #while train is in the station, departure estimate from the API is "Leaving"
+  #this function returns either a pretty number or the string "Leaving"
+    begin
+      ':' + (Integer(arrival) < 10 ? '0' : '') + arrival
+    rescue ArgumentError
+      arrival
+    end
+  end
+
+  first_train_in = is_arriving(arrival)
   next_train_in  = estimate[1]['minutes'][0] + ' min'
 
   direction.upcase == 'N' ? bound = 'NORTHBOUND' : bound = 'SOUTHBOUND'
